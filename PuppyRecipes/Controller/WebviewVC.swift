@@ -25,11 +25,6 @@ class WebviewVC: UIViewController, WKUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        let url = URL(string: "https://www.apple.com")
-        let request = URLRequest(url: url! as URL)
-        recipeWebView.load(request)
-         */
         
         if let href = self.href {
             print("href: \(href)")

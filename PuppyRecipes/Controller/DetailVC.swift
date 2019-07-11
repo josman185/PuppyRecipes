@@ -33,14 +33,6 @@ class DetailVC: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        /*if let thumbnail = recipeInfo?.thumbnail {
-            let imageData = Networking.imageFromUrl(urlString: thumbnail)
-            print("- - - Image data - - -")
-            print(imageData)
-        }*/
-    }
-    
     // 4
     func imageFromurl(urlString: String) {
         if let url = URL(string: urlString) {
