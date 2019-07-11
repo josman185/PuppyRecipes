@@ -99,5 +99,25 @@ class Networking: NSObject  {
      
      */
     
+    class func imageFromUrl(urlString: String) -> Data {
+        var imgDat: Data?
+        if let url = URL(string: urlString) {
+            let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+            let task = urlSession.dataTask(with: url, completionHandler: { (data, response, error) in
+                guard error == nil else {
+                    print("error \(String(describing: error))")
+                    return
+                }
+                guard let imageData = data else {
+                    print("No image data")
+                    return
+                }
+            imgDat = imageData
+            })
+            task.resume()
+        }
+        return imgDat!
+    }
+    
 }
 

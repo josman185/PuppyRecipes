@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="10a-br-zIe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="10a-br-zIe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,6 +15,10 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PuppyRecipes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cv7-Vx-5hL"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Gg-gj-eF6"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,12 +40,11 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1io-Ec-wzn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="24W-Bn-icC"/>
-                            <constraint firstItem="1io-Ec-wzn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="Hnq-1x-wq5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1io-Ec-wzn" secondAttribute="trailing" constant="16" id="c5o-ZZ-nQG"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1io-Ec-wzn" secondAttribute="bottom" constant="20" id="mUy-JN-skV"/>
+                            <constraint firstItem="1io-Ec-wzn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="24W-Bn-icC"/>
+                            <constraint firstItem="1io-Ec-wzn" firstAttribute="top" secondItem="Cv7-Vx-5hL" secondAttribute="bottom" constant="120" id="Hnq-1x-wq5"/>
+                            <constraint firstAttribute="trailing" secondItem="1io-Ec-wzn" secondAttribute="trailing" constant="16" id="c5o-ZZ-nQG"/>
+                            <constraint firstItem="8Gg-gj-eF6" firstAttribute="top" secondItem="1io-Ec-wzn" secondAttribute="bottom" constant="20" id="mUy-JN-skV"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="pxR-Ol-iOP"/>
                     <connections>
@@ -56,6 +60,10 @@
         <scene sceneID="FnA-S0-Hn5">
             <objects>
                 <viewController id="Rqe-5V-aTh" customClass="DetailVC" customModule="PuppyRecipes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Eqt-iU-1Zf"/>
+                        <viewControllerLayoutGuide type="bottom" id="oTy-ys-gqP"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gW7-m3-Ghb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,17 +83,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWj-jV-r2S">
+                                <rect key="frame" x="172" y="564" width="30" height="30"/>
+                                <state key="normal" title="Link"/>
+                                <connections>
+                                    <segue destination="RdU-jZ-aRZ" kind="show" identifier="segueToWebView" id="FPM-xd-D9u"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3B6-md-VqO" firstAttribute="leading" secondItem="P9Y-Gr-hNx" secondAttribute="leading" constant="16" id="GWC-lP-yHw"/>
-                            <constraint firstItem="Ix4-Ra-izc" firstAttribute="top" secondItem="P9Y-Gr-hNx" secondAttribute="top" constant="30" id="YA4-9f-fAh"/>
-                            <constraint firstItem="Ix4-Ra-izc" firstAttribute="leading" secondItem="P9Y-Gr-hNx" secondAttribute="leading" constant="16" id="ZdY-gg-f3x"/>
-                            <constraint firstItem="P9Y-Gr-hNx" firstAttribute="trailing" secondItem="3B6-md-VqO" secondAttribute="trailing" constant="16" id="dvG-xZ-EMI"/>
+                            <constraint firstItem="HWj-jV-r2S" firstAttribute="top" secondItem="3B6-md-VqO" secondAttribute="bottom" constant="70" id="4RF-FA-5GE"/>
+                            <constraint firstItem="3B6-md-VqO" firstAttribute="leading" secondItem="gW7-m3-Ghb" secondAttribute="leading" constant="16" id="GWC-lP-yHw"/>
+                            <constraint firstItem="HWj-jV-r2S" firstAttribute="centerX" secondItem="gW7-m3-Ghb" secondAttribute="centerX" id="M5U-qQ-ncS"/>
+                            <constraint firstItem="Ix4-Ra-izc" firstAttribute="top" secondItem="Eqt-iU-1Zf" secondAttribute="bottom" constant="30" id="YA4-9f-fAh"/>
+                            <constraint firstItem="Ix4-Ra-izc" firstAttribute="leading" secondItem="gW7-m3-Ghb" secondAttribute="leading" constant="16" id="ZdY-gg-f3x"/>
+                            <constraint firstAttribute="trailing" secondItem="3B6-md-VqO" secondAttribute="trailing" constant="16" id="dvG-xZ-EMI"/>
                             <constraint firstItem="3B6-md-VqO" firstAttribute="top" secondItem="Ix4-Ra-izc" secondAttribute="bottom" constant="50" id="zDV-2L-MR4"/>
-                            <constraint firstItem="P9Y-Gr-hNx" firstAttribute="trailing" secondItem="Ix4-Ra-izc" secondAttribute="trailing" constant="16" id="zXR-79-4eB"/>
+                            <constraint firstAttribute="trailing" secondItem="Ix4-Ra-izc" secondAttribute="trailing" constant="16" id="zXR-79-4eB"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="P9Y-Gr-hNx"/>
                     </view>
                     <connections>
                         <outlet property="ingredientsLbl" destination="3B6-md-VqO" id="AqR-yU-n4T"/>
@@ -94,7 +110,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYw-4U-8X9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1356" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1284" y="134"/>
+        </scene>
+        <!--WebviewVC-->
+        <scene sceneID="vEB-HE-HD4">
+            <objects>
+                <viewController id="RdU-jZ-aRZ" customClass="WebviewVC" customModule="PuppyRecipes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xRC-9d-jYI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zx2-9j-gmW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VRA-J0-jsI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2St-bj-grp">
+                                <rect key="frame" x="16" y="72" width="343" height="575"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2St-bj-grp" firstAttribute="top" secondItem="xRC-9d-jYI" secondAttribute="bottom" constant="8" id="6bl-Fd-oc3"/>
+                            <constraint firstItem="Zx2-9j-gmW" firstAttribute="top" secondItem="2St-bj-grp" secondAttribute="bottom" constant="20" id="CKK-0z-rf9"/>
+                            <constraint firstItem="2St-bj-grp" firstAttribute="leading" secondItem="VRA-J0-jsI" secondAttribute="leadingMargin" id="atj-OH-9Az"/>
+                            <constraint firstItem="2St-bj-grp" firstAttribute="trailing" secondItem="VRA-J0-jsI" secondAttribute="trailingMargin" id="dMw-p2-o25"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="recipeWebView" destination="2St-bj-grp" id="EON-58-qVn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0IF-iu-yLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2096.8000000000002" y="133.5832083958021"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dw7-mb-7Rr">

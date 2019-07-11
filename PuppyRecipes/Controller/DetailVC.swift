@@ -33,6 +33,14 @@ class DetailVC: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        /*if let thumbnail = recipeInfo?.thumbnail {
+            let imageData = Networking.imageFromUrl(urlString: thumbnail)
+            print("- - - Image data - - -")
+            print(imageData)
+        }*/
+    }
+    
     // 4
     func imageFromurl(urlString: String) {
         if let url = URL(string: urlString) {
@@ -43,10 +51,10 @@ class DetailVC: UIViewController {
                     print("error \(String(describing: error))")
                     return
                 }
-                if let imageData = data as NSData? {
+                if let imageData = data as Data? {
                     // 4.2
                     DispatchQueue.main.async {
-                            self.thumbImageView.image = UIImage(data: imageData as Data)
+                            self.thumbImageView.image = UIImage(data: imageData)
                         }
                 }
             })
@@ -62,4 +70,12 @@ class DetailVC: UIViewController {
      4.1 hacemos el request de la imagen con la url.
      4.2 actualizamos la vista con la imagen descargada.
      */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // segueToWebView
+        if segue.identifier == "segueToWebView" {
+            let destination = segue.destination as! WebviewVC
+            destination.href = recipeInfo?.href
+        }
+    }
 }
