@@ -15,6 +15,7 @@ class ViewController: UIViewController, RecipesProtocol {
     var s = String()
     var networking = Networking()
     var recipesListArr: NSArray = NSArray()
+    let rowcolors = [UIColor.red, UIColor.blue, UIColor.brown, UIColor.cyan]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +84,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let cellIdentifier: String = "BasicCell"
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
         let recipe: RecipeItem = recipesListArr[indexPath.row] as! RecipeItem
+        cell.backgroundColor = self.rowcolors[indexPath.row % self.rowcolors.count]
         cell.textLabel!.text = recipe.title
         return cell
     }
