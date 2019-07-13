@@ -10,19 +10,26 @@ import UIKit
 
 class DetailVC: UIViewController {
     
-    @IBOutlet weak var ingredientsLbl: UILabel!
+    @IBOutlet weak var ingredientsTV: UITableView!
     @IBOutlet weak var thumbImageView: UIImageView!
+    @IBOutlet weak var ingredientsLbl: UILabel!
     var recipeInfo: RecipeItem?
+    var ingredientsArr: [String] = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.ingredientsTV.delegate = self
+        self.ingredientsTV.dataSource = self
         // 1
         self.title = recipeInfo?.title
         // 2
-        if let ingredients = recipeInfo?.ingredients {
-            self.ingredientsLbl.text = "Ingredients: \(ingredients)"
+        if let ingredientsList = recipeInfo?.ingredients {
+            ingredientsArr = ingredientsList.split(separator: ",").map({ (substring) in
+                return String(substring)
+            })
         } else {
-            self.ingredientsLbl.text = "No ingredients"
+            print("No ingredients")
+            self.ingredientsLbl.text = "No ingredients in this Recipe"
         }
     }
     
@@ -70,4 +77,19 @@ class DetailVC: UIViewController {
             destination.href = recipeInfo?.href
         }
     }
+}
+
+extension DetailVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ingredientsArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier: String = "ingredinetsCell_id"
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
+        let ingredient = ingredientsArr[indexPath.row]
+        cell.textLabel?.text = ingredient
+        return cell
+    }
+    
 }

@@ -33,9 +33,15 @@ class ViewController: UIViewController, RecipesProtocol {
     @objc func btnBuscarPressed(sender: UIButton!) {
         // 2
         let str = textField.text ?? "None"
-        let ingredientsArray = str.split(separator: " ").map({ (substring) in
+        let separated = str.split(separator: ":").map { (substringSeparated) in
+            
+            return String(substringSeparated)
+        }
+        var ingredientsArray = separated[1].split(separator: " ").map({ (substring) in
             return String(substring)
         })
+        ingredientsArray.append(separated[0])
+        
         // 3
         if (self.recipesListArr.count == 0) {
             let net = Networking()
