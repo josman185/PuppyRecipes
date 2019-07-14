@@ -15,8 +15,8 @@ class ViewController: UIViewController, RecipesProtocol {
     var s = String()
     var networking = Networking()
     var recipesListArr: NSArray = NSArray()
-    let rowcolors = [UIColor.red, UIColor.blue, UIColor.brown, UIColor.cyan]
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.recipesTV.delegate = self
@@ -52,7 +52,9 @@ class ViewController: UIViewController, RecipesProtocol {
     // 4
     func recipesDownloaded(recipes: NSArray) {
         recipesListArr = recipes
-        self.recipesTV.reloadData()
+        DispatchQueue.main.async {
+            self.recipesTV.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -84,22 +86,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipesListArr.count
     }
-    
     // 2
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier: String = "BasicCell"
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
         let recipe: RecipeItem = recipesListArr[indexPath.row] as! RecipeItem
-        cell.backgroundColor = self.rowcolors[indexPath.row % self.rowcolors.count]
         cell.textLabel!.text = recipe.title
         return cell
     }
-    
     // 3
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "segueToDetailVC", sender: indexPath)
     }
-    
     /* Table View DataSource
         1. Número de Rows en la tabla, varia de acuerdo al tamaño del array que llenará la misma.
         2. Vaciamos la informacion del array en la tabla.

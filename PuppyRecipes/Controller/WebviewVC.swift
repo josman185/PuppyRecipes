@@ -63,6 +63,7 @@ extension WebviewVC: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         print("didFailProvisionalNavigation:")
         print(error.localizedDescription)
+        showAlertView(titulo: "Error", mensaje: error.localizedDescription, actionTitle: "OK")
     }
     
     func webViewDidClose(_ webView: WKWebView) {

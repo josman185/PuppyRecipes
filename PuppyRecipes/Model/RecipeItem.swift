@@ -7,22 +7,22 @@
 //  Modelado de los datos.
 
 import Foundation
+import UIKit
 
 class RecipeItem : NSObject {
     
-    var href: String?
-    var ingredients: String?
-    var thumbnail: String?
-    var title: String?
+    public let href: String
+    public let ingredients: String
+    public let thumbnail: String
+    public let title: String
+    public let image: UIImage
+
     
-    override init() {
-    }
-    
-    init(href:String, ingredients: String, thumbnail: String, title: String) {
+    init(href: String, ingredients: String, thumbnail: String, title: String, image: UIImage) {
         self.href = href
         self.ingredients = ingredients
         self.thumbnail = thumbnail
         self.title = title
+        self.image = image
     }
-    
 }

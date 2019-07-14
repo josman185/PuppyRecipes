@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol RecipesProtocol: class {
     func recipesDownloaded(recipes: NSArray)
@@ -72,18 +73,16 @@ class Networking: NSObject  {
             for i in 0 ..< recipes.count {
                 jsonElement = recipes[i] as NSDictionary
                 
-                let recipe = RecipeItem()
+                let image = UIImage(named: "no-image")
                 if let href = jsonElement["href"] as? String,
                     let ingredients = jsonElement["ingredients"] as? String,
                     let thumbnail = jsonElement["thumbnail"] as? String,
                     let title = jsonElement["title"] as? String
                 {
-                    recipe.href = href
-                    recipe.ingredients = ingredients
-                    recipe.thumbnail = thumbnail
-                    recipe.title = title
+                    let recipe = RecipeItem(href: href, ingredients: ingredients, thumbnail: thumbnail, title: title, image: image!)
+                    recipesArray.add(recipe)
                 }
-                recipesArray.add(recipe)
+                
             }
             print("Recipes Array Count: \(recipesArray.count)")
             // 4.3
@@ -98,6 +97,7 @@ class Networking: NSObject  {
      4.2 Recorremos el diccionario para llenar el objeto array con las Recipes.
      
      */
+    
     
     class func imageFromUrl(urlString: String) -> Data {
         var imgDat: Data?

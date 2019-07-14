@@ -20,23 +20,27 @@ class DetailVC: UIViewController {
         super.viewDidLoad()
         self.ingredientsTV.delegate = self
         self.ingredientsTV.dataSource = self
+        
+        let recipe = RecipeItem(href: (recipeInfo?.href)!, ingredients: (recipeInfo?.ingredients)!, thumbnail: (recipeInfo?.thumbnail)!, title: (recipeInfo?.title)!, image: (recipeInfo?.image)!)
+        
+        let viewModel = RecipeViewModel(recipe: recipe)
+        
         // 1
-        self.title = recipeInfo?.title
+        self.title = viewModel.title
         // 2
-        if let ingredientsList = recipeInfo?.ingredients {
-            ingredientsArr = ingredientsList.split(separator: ",").map({ (substring) in
-                return String(substring)
-            })
-        } else {
-            print("No ingredients")
-            self.ingredientsLbl.text = "No ingredients in this Recipe"
-        }
+        ingredientsArr = viewModel.ingredients.split(separator: ",").map({ (substring) in
+            return String(substring)
+        })
     }
     
     // 3
     override func viewWillAppear(_ animated: Bool) {
         if let thumbnail = recipeInfo?.thumbnail {
              imageFromurl(urlString: (thumbnail))
+        } else {
+            DispatchQueue.main.async {
+                self.thumbImageView.image = UIImage(named: "no-image")
+            }
         }
     }
     
